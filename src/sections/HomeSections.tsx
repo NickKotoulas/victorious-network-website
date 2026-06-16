@@ -7,14 +7,17 @@ import {
   whoWeArePoints,
   whyPoints,
 } from "@/content/home";
-import { AmbientBackground, HeroVisual } from "@/components/ui/VisualField";
+import {
+  HeroSignalVisual,
+  UnifiedBackground,
+} from "@/components/visuals/UnifiedBackground";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import type { ReactNode } from "react";
 
 export function HomeSections() {
   return (
-    <main className="relative overflow-hidden bg-ink text-white">
-      <AmbientBackground />
+    <main className="relative isolate overflow-hidden bg-transparent text-paper">
+      <UnifiedBackground />
       <HeroSection />
       <WhoWeAreSection />
       <ServicesSection />
@@ -32,38 +35,45 @@ function HeroSection() {
   return (
     <section
       id="home"
-      className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pb-20 pt-32 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pt-28"
+      className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pb-24 pt-36 sm:px-6 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:pt-32"
     >
-      <SectionReveal>
-        <p className="mb-5 inline-flex rounded-full border border-signal/25 bg-signal/10 px-4 py-2 text-sm font-medium text-signal">
-          AI, robotics and technology communications
+      <div className="absolute left-5 top-28 h-px w-28 bg-gradient-to-r from-gold to-transparent sm:left-6 lg:left-8" />
+      <SectionReveal className="relative z-10">
+        <p className="mb-6 inline-flex rounded-full border border-gold/25 bg-gold/10 px-4 py-2 text-sm font-medium text-champagne shadow-[0_0_2rem_rgba(212,175,55,0.12)]">
+          Luxury innovation network for AI, robotics and technology brands
         </p>
-        <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-normal text-white sm:text-6xl lg:text-7xl">
-          The AI-Driven Agency for Technology Storytelling
+        <h1 className="max-w-5xl text-5xl font-semibold leading-[0.98] tracking-normal text-paper sm:text-7xl lg:text-8xl">
+          The AI-Driven Agency for{" "}
+          <span className="text-gold">Technology Storytelling</span>
         </h1>
-        <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-platinum/78 sm:text-xl">
           Victorious Network combines artificial intelligence, public relations,
           marketing and robotics expertise to help technology and
           innovation-driven brands build visibility, authority and market
           presence.
         </p>
-        <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
             href="#contact"
-            className="rounded-full bg-white px-7 py-4 text-center text-sm font-semibold text-ink transition hover:bg-signal"
+            className="rounded-full bg-gold px-7 py-4 text-center text-sm font-semibold text-ink shadow-[0_0_2.5rem_rgba(212,175,55,0.28)] transition hover:bg-champagne"
           >
             Contact Us
           </a>
           <a
             href="#services"
-            className="rounded-full border border-white/20 px-7 py-4 text-center text-sm font-semibold text-white transition hover:border-signal/60 hover:bg-signal/10"
+            className="rounded-full border border-gold/25 bg-white/[0.03] px-7 py-4 text-center text-sm font-semibold text-paper transition hover:border-gold/60 hover:bg-gold/10"
           >
             Explore Services
           </a>
         </div>
+        <div className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-gold/15 pt-6 text-xs uppercase text-platinum/60">
+          <span>AI strategy</span>
+          <span>Robotics access</span>
+          <span>Market authority</span>
+        </div>
       </SectionReveal>
-      <SectionReveal delay={0.12}>
-        <HeroVisual />
+      <SectionReveal delay={0.12} className="relative z-10">
+        <HeroSignalVisual />
       </SectionReveal>
     </section>
   );
@@ -75,11 +85,11 @@ function WhoWeAreSection() {
       <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <SectionReveal>
           <SectionKicker>Who We Are</SectionKicker>
-          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-5xl">
+          <h2 className="mt-4 text-3xl font-semibold text-paper sm:text-5xl">
             We connect technology with society, business and global innovation
             ecosystems.
           </h2>
-          <p className="mt-6 text-lg leading-8 text-white/70">
+          <p className="mt-6 text-lg leading-8 text-platinum/70">
             We are an AI-driven marketing and communications agency connecting
             technology with society, business and global innovation ecosystems.
           </p>
@@ -118,9 +128,9 @@ function AIEcosystemSection() {
   return (
     <section
       id="ai-ecosystem"
-      className="relative overflow-hidden border-y border-white/10 bg-white/[0.035] px-5 py-24 sm:px-6 lg:px-8"
+      className="relative overflow-hidden border-y border-gold/10 bg-white/[0.03] px-5 py-24 sm:px-6 lg:px-8"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(79,215,255,0.2),transparent_34rem)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.13),transparent_34rem)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionIntro
           kicker="AI Ecosystem"
@@ -181,8 +191,8 @@ function ProjectsSection() {
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {projects.map((project) => (
           <SectionReveal key={project.title}>
-            <article className="group h-full rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-6 transition hover:-translate-y-1 hover:border-signal/40 hover:bg-white/[0.07]">
-              <p className="text-sm font-medium text-signal">{project.category}</p>
+            <article className="group h-full rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-6 transition hover:-translate-y-1 hover:border-gold/40 hover:bg-white/[0.07]">
+              <p className="text-sm font-medium text-gold">{project.category}</p>
               <h3 className="mt-5 text-2xl font-semibold text-white">
                 {project.title}
               </h3>
@@ -234,8 +244,8 @@ function WhySection() {
 function FinalCtaSection() {
   return (
     <section id="contact" className="px-5 py-24 sm:px-6 lg:px-8">
-      <SectionReveal className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-signal/20 bg-[radial-gradient(circle_at_50%_0%,rgba(79,215,255,0.24),transparent_30rem),linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03))] px-6 py-16 text-center shadow-2xl shadow-cobalt/20 sm:px-10">
-        <p className="text-sm font-medium uppercase text-signal">
+      <SectionReveal className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-gold/20 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.18),transparent_30rem),linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03))] px-6 py-16 text-center shadow-2xl shadow-gold/20 sm:px-10">
+        <p className="text-sm font-medium uppercase text-gold">
           Contact Victorious Network
         </p>
         <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold text-white sm:text-6xl">
@@ -247,7 +257,7 @@ function FinalCtaSection() {
         </p>
         <a
           href="mailto:hello@victorious.network"
-          className="mt-9 inline-flex rounded-full bg-white px-8 py-4 text-sm font-semibold text-ink transition hover:bg-signal"
+          className="mt-9 inline-flex rounded-full bg-gold px-8 py-4 text-sm font-semibold text-ink transition hover:bg-champagne"
         >
           Contact Us
         </a>
@@ -292,7 +302,7 @@ function SectionIntro({
 
 function SectionKicker({ children }: { children: ReactNode }) {
   return (
-    <p className="text-sm font-semibold uppercase text-signal">{children}</p>
+    <p className="text-sm font-semibold uppercase text-gold">{children}</p>
   );
 }
 
@@ -321,11 +331,11 @@ function PremiumCard({
   return (
     <SectionReveal delay={Math.min(index * 0.03, 0.18)}>
       <article
-        className={`group relative h-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition duration-300 hover:-translate-y-1 hover:border-signal/50 hover:bg-white/[0.07] ${
+        className={`group relative h-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-white/[0.07] ${
           compact ? "p-5" : "p-6"
         }`}
       >
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/70 to-transparent opacity-0 transition group-hover:opacity-100" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent opacity-0 transition group-hover:opacity-100" />
         <p className="text-sm text-white/40">0{index}</p>
         <h3 className="mt-7 text-xl font-semibold leading-7 text-white">{title}</h3>
       </article>
@@ -336,8 +346,8 @@ function PremiumCard({
 function GlassCard({ title, index }: { title: string; index: number }) {
   return (
     <SectionReveal delay={Math.min(index * 0.04, 0.2)}>
-      <article className="h-full rounded-[1.5rem] border border-white/10 bg-white/[0.065] p-5 shadow-xl shadow-cobalt/10 backdrop-blur transition hover:-translate-y-1 hover:border-signal/50">
-        <div className="mb-8 h-12 w-12 rounded-2xl bg-gradient-to-br from-signal/30 to-cobalt/30" />
+      <article className="h-full rounded-[1.5rem] border border-white/10 bg-white/[0.065] p-5 shadow-xl shadow-gold/10 backdrop-blur transition hover:-translate-y-1 hover:border-gold/50">
+        <div className="mb-8 h-12 w-12 rounded-2xl bg-gradient-to-br from-gold/30 to-champagne/10" />
         <h3 className="text-lg font-semibold leading-7 text-white">{title}</h3>
       </article>
     </SectionReveal>
@@ -347,7 +357,7 @@ function GlassCard({ title, index }: { title: string; index: number }) {
 function FeatureCard({ label, index }: { label: string; index: number }) {
   return (
     <article className="rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-6">
-      <div className="mb-8 flex h-11 w-11 items-center justify-center rounded-2xl border border-signal/25 bg-signal/10 text-sm font-semibold text-signal">
+      <div className="mb-8 flex h-11 w-11 items-center justify-center rounded-2xl border border-gold/25 bg-gold/10 text-sm font-semibold text-gold">
         0{index}
       </div>
       <h3 className="text-xl font-semibold text-white">{label}</h3>
@@ -358,8 +368,8 @@ function FeatureCard({ label, index }: { label: string; index: number }) {
 function EventCard({ title, index }: { title: string; index: number }) {
   return (
     <SectionReveal delay={Math.min(index * 0.03, 0.18)}>
-      <article className="group overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition hover:-translate-y-1 hover:border-signal/40">
-        <div className="h-36 bg-[radial-gradient(circle_at_30%_20%,rgba(79,215,255,0.45),transparent_14rem),linear-gradient(135deg,rgba(57,109,255,0.45),rgba(255,255,255,0.04))]" />
+      <article className="group overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition hover:-translate-y-1 hover:border-gold/40">
+        <div className="h-36 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.32),transparent_14rem),linear-gradient(135deg,rgba(9,20,38,0.9),rgba(255,255,255,0.04))]" />
         <div className="p-6">
           <p className="text-sm text-white/40">Experience 0{index}</p>
           <h3 className="mt-4 text-xl font-semibold text-white">{title}</h3>
@@ -380,7 +390,7 @@ function SectionButton({
     <SectionReveal className="mt-10">
       <a
         href={href}
-        className="inline-flex rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-signal/60 hover:bg-signal/10"
+        className="inline-flex rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-gold/60 hover:bg-gold/10"
       >
         {children}
       </a>

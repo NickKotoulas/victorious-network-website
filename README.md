@@ -48,6 +48,8 @@ src/
   content/      Homepage copy and future EN/GR structured content
   lib/          Shared utilities and configuration helpers
   sections/     Homepage sections and future marketing page sections
+  components/visuals/
+                Reusable premium background and hero visual systems
   styles/       Shared style tokens or CSS modules if needed
 ```
 

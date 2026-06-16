@@ -10,13 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#050812",
-        paper: "#F6F8FB",
-        gold: "#C8A24A",
-        graphite: "#7C8798",
-        signal: "#4FD7FF",
-        cobalt: "#396DFF",
-        midnight: "#07111F",
+        ink: "#050507",
+        paper: "#F7F2E8",
+        gold: "#D4AF37",
+        champagne: "#E8D9B7",
+        graphite: "#8C9097",
+        platinum: "#C8CDD4",
+        navy: "#091426",
+        midnight: "#030711",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
