@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -11,13 +12,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Victorious Network",
   description:
-    "Premium AI-driven marketing and communications agency website foundation.",
+    "AI-driven marketing and communications agency for technology, robotics and innovation-driven brands.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
