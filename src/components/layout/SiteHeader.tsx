@@ -10,9 +10,13 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/15 bg-ink/55 shadow-[0_1rem_4rem_rgba(0,0,0,0.28)] backdrop-blur-2xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
         <a href="#home" className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-gold/45 bg-gold/10 text-sm font-semibold text-gold shadow-[0_0_2rem_rgba(212,175,55,0.18)]">
-            VN
-          </span>
+          <img
+            src="/assets/vn-emblem-gold.png"
+            alt="Victorious Network"
+            className="h-10 w-auto sm:h-11"
+            width={1063}
+            height={414}
+          />
           <span className="text-base font-semibold text-paper">
             Victorious Network
           </span>
