@@ -14,8 +14,8 @@ export function SiteHeader() {
             src="/assets/vn-emblem-gold.png"
             alt="Victorious Network"
             className="h-10 w-auto sm:h-11"
-            width={1063}
-            height={414}
+            width={360}
+            height={140}
           />
           <span className="text-base font-semibold text-paper">
             Victorious Network
