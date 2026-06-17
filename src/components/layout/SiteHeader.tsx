@@ -7,80 +7,92 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/15 bg-ink/55 shadow-[0_1rem_4rem_rgba(0,0,0,0.28)] backdrop-blur-2xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
-        <a href="#home" className="flex items-center gap-3">
-          <img
-            src="/assets/vn-emblem-gold.png"
-            alt="Victorious Network"
-            className="h-10 w-auto sm:h-11"
-            width={360}
-            height={140}
-          />
-          <span className="text-base font-semibold text-paper">
-            Victorious Network
-          </span>
-        </a>
-
-        <div className="hidden items-center gap-7 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-paper/68 transition hover:text-paper"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="#contact"
-            className="rounded-full border border-gold/35 bg-gold px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_0_2rem_rgba(212,175,55,0.24)] transition hover:bg-champagne"
-          >
-            Contact Us
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.45rem] border border-gold/18 bg-ink/72 shadow-[0_1.2rem_5rem_rgba(0,0,0,0.38)] backdrop-blur-2xl">
+        <div className="h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+        <nav className="flex items-center justify-between px-4 py-3 sm:px-5 lg:px-6">
+          <a href="#home" className="group flex min-w-0 items-center gap-3">
+            <span className="relative grid h-12 w-20 shrink-0 place-items-center overflow-hidden border-r border-gold/30 pr-3 sm:h-14 sm:w-24">
+              <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(212,175,55,0.18),transparent_70%)] opacity-0 transition group-hover:opacity-100" />
+              <img
+                src="/assets/vn-emblem-gold.png"
+                alt="Victorious Network"
+                className="relative h-10 w-auto sm:h-12"
+                width={360}
+                height={140}
+              />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-paper sm:text-base">
+                Victorious Network
+              </span>
+              <span className="hidden text-[0.62rem] uppercase tracking-[0.28em] text-gold/75 sm:block">
+                AI Communications Network
+              </span>
+            </span>
           </a>
-        </div>
 
-        <button
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-gold/20 bg-white/5 text-paper lg:hidden"
-        >
-          <span className="space-y-1.5">
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
-          </span>
-        </button>
-      </nav>
-
-      {isOpen ? (
-        <div className="border-t border-gold/15 bg-ink/95 px-5 py-5 shadow-2xl lg:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col gap-4">
+          <div className="hidden items-center gap-1 rounded-full border border-white/8 bg-white/[0.035] p-1 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="rounded-2xl px-3 py-2 text-sm text-paper/75 transition hover:bg-white/5 hover:text-paper"
+                className="group relative rounded-full px-4 py-2 text-sm text-paper/68 transition hover:bg-gold/10 hover:text-paper"
               >
-                {item.label}
+                <span className="relative z-10">{item.label}</span>
+                <span className="absolute inset-x-4 bottom-1 h-px origin-left scale-x-0 bg-gold transition group-hover:scale-x-100" />
               </a>
             ))}
+          </div>
+
+          <div className="hidden items-center gap-3 lg:flex">
             <a
               href="#contact"
-              onClick={() => setIsOpen(false)}
-              className="mt-2 rounded-full bg-gold px-5 py-3 text-center text-sm font-semibold text-ink"
+              className="rounded-full border border-gold/50 bg-gold px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_0_2rem_rgba(212,175,55,0.28)] transition hover:bg-champagne hover:shadow-[0_0_3rem_rgba(212,175,55,0.38)]"
             >
               Contact Us
             </a>
           </div>
-        </div>
-      ) : null}
+
+          <button
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((value) => !value)}
+            className="grid h-11 w-11 place-items-center rounded-full border border-gold/30 bg-gold/10 text-paper shadow-[0_0_2rem_rgba(212,175,55,0.12)] lg:hidden"
+          >
+            <span className="space-y-1.5">
+              <span className="block h-0.5 w-5 bg-current" />
+              <span className="block h-0.5 w-5 bg-current" />
+              <span className="block h-0.5 w-5 bg-current" />
+            </span>
+          </button>
+        </nav>
+
+        {isOpen ? (
+          <div className="border-t border-gold/15 bg-ink/95 px-4 py-4 shadow-2xl lg:hidden">
+            <div className="grid gap-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-2xl px-3 py-2 text-sm text-paper/75 transition hover:bg-white/5 hover:text-paper"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="mt-3 rounded-full bg-gold px-5 py-3 text-center text-sm font-semibold text-ink"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        ) : null}
+      </div>
     </header>
   );
 }
