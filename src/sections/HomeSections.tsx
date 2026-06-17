@@ -37,9 +37,12 @@ function HeroSection() {
         <p className="mb-6 inline-flex rounded-full border border-gold/25 bg-gold/10 px-4 py-2 text-sm font-medium text-champagne shadow-[0_0_2rem_rgba(212,175,55,0.12)]">
           {hero.motto}
         </p>
-        <h1 className="max-w-5xl text-5xl font-semibold leading-[0.98] tracking-normal text-paper sm:text-7xl lg:text-8xl">
-          The AI-driven agency for technology, innovation and{" "}
-          <span className="text-gold">impact.</span>
+        <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-normal text-paper sm:text-7xl lg:text-8xl">
+          The AI-driven agency for{" "}
+          <span className="bg-gradient-to-r from-paper via-champagne to-gold bg-clip-text text-transparent">
+            technology
+          </span>
+          , innovation and <span className="text-gold">impact.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-platinum/78 sm:text-xl">
           {hero.subline}
@@ -72,8 +75,11 @@ function AboutSection() {
       <div className="grid gap-12 lg:grid-cols-[0.92fr_0.78fr] lg:items-center lg:justify-between">
         <SectionReveal>
           <SectionKicker>{about.kicker}</SectionKicker>
-          <h2 className="mt-4 max-w-4xl text-3xl font-semibold text-paper sm:text-5xl">
-            {about.title}
+          <h2 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-paper sm:text-6xl">
+            We connect technology with{" "}
+            <span className="bg-gradient-to-r from-gold via-champagne to-paper bg-clip-text text-transparent">
+              society, business and global innovation ecosystems.
+            </span>
           </h2>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-platinum/70">
             {about.text}
@@ -114,8 +120,11 @@ function ClosingSection() {
         <p className="text-sm font-medium uppercase text-gold">
           {closing.kicker}
         </p>
-        <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold text-paper sm:text-6xl">
-          {closing.headline}
+        <h2 className="mx-auto mt-5 max-w-4xl text-5xl font-semibold leading-tight text-paper sm:text-7xl">
+          Let&apos;s build your{" "}
+          <span className="bg-gradient-to-r from-gold via-champagne to-paper bg-clip-text text-transparent">
+            next visible move.
+          </span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-platinum/70">
           {closing.text}
