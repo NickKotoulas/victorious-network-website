@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { HomeSections } from "@/sections/HomeSections";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <SiteHeader />
       <HomeSections />
+      <SiteFooter />
     </>
   );
 }
