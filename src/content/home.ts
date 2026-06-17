@@ -39,6 +39,7 @@ export const about = {
 // PILLAR 1 — AI Experiences & Events
 export const pillarExperiences = {
   id: "experiences",
+  visualType: "experiences",
   kicker: "Pillar 01",
   title: "AI Experiences & Events",
   intro:
@@ -66,6 +67,7 @@ export const pillarExperiences = {
 // PILLAR 2 — AI Media
 export const pillarMedia = {
   id: "media",
+  visualType: "media",
   kicker: "Pillar 02",
   title: "AI Media",
   intro:
@@ -98,6 +100,7 @@ export const pillarMedia = {
 // PILLAR 3 — Innovation & Robotics
 export const pillarInnovation = {
   id: "innovation",
+  visualType: "innovation",
   kicker: "Pillar 03",
   title: "Innovation & Robotics",
   intro:
@@ -125,6 +128,7 @@ export const pillarInnovation = {
 // PILLAR 4 — Commercial Services
 export const pillarServices = {
   id: "services",
+  visualType: "commercial",
   kicker: "Pillar 04",
   title: "Commercial Services",
   intro:
