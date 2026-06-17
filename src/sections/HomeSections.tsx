@@ -3,7 +3,9 @@ import {
   HeroSignalVisual,
   UnifiedBackground,
 } from "@/components/visuals/UnifiedBackground";
+import { PillarExperienceSection } from "@/components/sections/PillarExperienceSection";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { SafeAssetImage } from "@/components/ui/SafeAssetImage";
 import type { ReactNode } from "react";
 
 export function HomeSections() {
@@ -13,7 +15,11 @@ export function HomeSections() {
       <HeroSection />
       <AboutSection />
       {pillars.map((pillar, index) => (
-        <PillarSection key={pillar.id} pillar={pillar} index={index} />
+        <PillarExperienceSection
+          key={pillar.id}
+          pillar={pillar}
+          index={index}
+        />
       ))}
       <ClosingSection />
     </main>
@@ -77,7 +83,7 @@ function AboutSection() {
         <SectionReveal delay={0.12}>
           <article className="overflow-hidden rounded-[2rem] border border-gold/20 bg-white/[0.045] p-4 shadow-2xl shadow-gold/10 backdrop-blur">
             <div className="aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-gold/20 bg-midnight">
-              <img
+              <SafeAssetImage
                 src={about.ceo.photo}
                 alt={about.ceo.name}
                 className="h-full w-full object-cover"
@@ -98,67 +104,6 @@ function AboutSection() {
         </SectionReveal>
       </div>
     </SectionShell>
-  );
-}
-
-function PillarSection({
-  pillar,
-  index,
-}: {
-  pillar: (typeof pillars)[number];
-  index: number;
-}) {
-  const isReversed = index % 2 === 1;
-  const introAlignment = isReversed ? "lg:ml-auto lg:text-right" : "";
-  const columns = pillar.items.length >= 4 ? "lg:grid-cols-2" : "lg:grid-cols-3";
-
-  return (
-    <section
-      id={pillar.id}
-      className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8"
-    >
-      <SectionReveal className={`max-w-3xl ${introAlignment}`}>
-        <SectionKicker>{pillar.kicker}</SectionKicker>
-        <h2 className="mt-4 text-4xl font-semibold text-paper sm:text-6xl">
-          {pillar.title}
-        </h2>
-        <p className="mt-6 text-lg leading-8 text-platinum/70">
-          {pillar.intro}
-        </p>
-      </SectionReveal>
-
-      <div className={`mt-12 grid gap-5 sm:grid-cols-2 ${columns}`}>
-        {pillar.items.map((item, itemIndex) => (
-          <SectionReveal
-            key={item.title}
-            delay={Math.min(itemIndex * 0.05, 0.25)}
-          >
-            <article className="group relative h-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-6 transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-white/[0.07]">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent opacity-0 transition group-hover:opacity-100" />
-              <p className="text-sm text-white/40">0{itemIndex + 1}</p>
-              <h3 className="mt-7 text-xl font-semibold leading-7 text-white">
-                {item.title}
-              </h3>
-              <p className="mt-4 leading-7 text-white/60">
-                {item.description}
-              </p>
-            </article>
-          </SectionReveal>
-        ))}
-      </div>
-
-      <SectionReveal className="mt-10 border-t border-gold/15 pt-6">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-base text-platinum/75">{pillar.cta.prompt}</p>
-          <a
-            href={pillar.cta.href}
-            className="inline-flex w-fit rounded-full border border-gold/40 px-6 py-3 text-sm font-semibold text-paper transition hover:bg-gold/10"
-          >
-            {pillar.cta.label}
-          </a>
-        </div>
-      </SectionReveal>
-    </section>
   );
 }
 
