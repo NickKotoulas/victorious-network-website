@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import type { pillars } from "@/content/home";
+import type { ReactNode } from "react";
 
 type Pillar = (typeof pillars)[number];
 type VisualType = Pillar["visualType"];
@@ -48,6 +49,54 @@ const visualTone: Record<VisualType, string> = {
     "from-champagne/14 via-gold/12 to-transparent shadow-[0_0_6rem_rgba(212,175,55,0.1)]",
 };
 
+const visualSkins: Record<
+  VisualType,
+  {
+    ghost: string;
+    accent: string;
+    section: string;
+    frame: string;
+    titleAccent: string;
+  }
+> = {
+  experiences: {
+    ghost: "STAGE",
+    accent: "from-gold via-champagne to-paper",
+    section:
+      "bg-[radial-gradient(circle_at_78%_22%,rgba(212,175,55,0.16),transparent_28rem),linear-gradient(120deg,rgba(5,5,7,0.98),rgba(31,18,8,0.68),rgba(5,5,7,0.94))]",
+    frame:
+      "rounded-t-[4rem] border-gold/30 bg-[radial-gradient(circle_at_50%_86%,rgba(212,175,55,0.22),transparent_18rem)]",
+    titleAccent: "Experiences & Events",
+  },
+  media: {
+    ghost: "MEDIA",
+    accent: "from-platinum via-paper to-gold",
+    section:
+      "bg-[radial-gradient(circle_at_20%_18%,rgba(200,205,212,0.12),transparent_24rem),linear-gradient(120deg,rgba(5,5,7,0.96),rgba(20,24,31,0.86),rgba(5,5,7,0.96))]",
+    frame:
+      "rounded-[1.2rem] border-platinum/20 bg-[linear-gradient(135deg,rgba(200,205,212,0.08),rgba(212,175,55,0.05))]",
+    titleAccent: "Media",
+  },
+  innovation: {
+    ghost: "ROBOTICS",
+    accent: "from-gold via-paper to-platinum",
+    section:
+      "bg-[radial-gradient(circle_at_70%_20%,rgba(9,20,38,0.9),transparent_28rem),linear-gradient(135deg,rgba(3,7,17,0.98),rgba(9,20,38,0.72),rgba(5,5,7,0.96))]",
+    frame:
+      "rounded-[2.5rem] border-gold/20 bg-[radial-gradient(circle_at_50%_40%,rgba(9,20,38,0.95),rgba(5,5,7,0.58))]",
+    titleAccent: "Robotics",
+  },
+  commercial: {
+    ghost: "MARKET",
+    accent: "from-champagne via-gold to-paper",
+    section:
+      "bg-[radial-gradient(circle_at_18%_18%,rgba(232,217,183,0.12),transparent_22rem),linear-gradient(120deg,rgba(5,5,7,0.96),rgba(24,22,18,0.82),rgba(5,5,7,0.96))]",
+    frame:
+      "rounded-[0.9rem] border-champagne/22 bg-[linear-gradient(135deg,rgba(232,217,183,0.08),rgba(212,175,55,0.06))]",
+    titleAccent: "Services",
+  },
+};
+
 export function PillarExperienceSection({
   pillar,
   index,
@@ -61,10 +110,13 @@ export function PillarExperienceSection({
   return (
     <section
       id={pillar.id}
-      className="relative overflow-hidden border-y border-white/[0.035] px-5 py-24 sm:px-6 lg:px-8"
+      className={`relative overflow-hidden border-y border-white/[0.035] px-5 py-24 sm:px-6 lg:px-8 ${visualSkins[pillar.visualType].section}`}
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(212,175,55,0.055),transparent_18%,transparent_82%,rgba(232,217,183,0.04))]" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(72rem,80vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
+      <div className="pointer-events-none absolute right-6 top-12 hidden w-[min(42rem,68vw)] overflow-hidden text-right text-[9rem] font-semibold leading-none text-white/[0.025] lg:block xl:text-[12rem]">
+        {visualSkins[pillar.visualType].ghost}
+      </div>
 
       <div
         className={`relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center ${
@@ -81,20 +133,25 @@ export function PillarExperienceSection({
             </p>
             <span className="text-xs text-platinum/35">{sectionNumber}</span>
           </div>
-          <h2 className="max-w-3xl text-4xl font-semibold leading-tight text-paper sm:text-6xl">
-            {pillar.title}
-          </h2>
+          <PillarHeading pillar={pillar} />
           <p className="mt-6 max-w-3xl text-lg leading-8 text-platinum/72">
             {pillar.intro}
           </p>
-          <MicroCTA prompt={pillar.cta.prompt} label={pillar.cta.label} />
+          <MicroCTA
+            prompt={pillar.cta.prompt}
+            label={pillar.cta.label}
+            visualType={pillar.visualType}
+          />
         </SectionReveal>
 
         <SectionReveal
           delay={0.1}
           className={reversed ? "lg:col-start-1 lg:row-start-1" : ""}
         >
-          <SectionVisualFrame visualType={pillar.visualType}>
+          <SectionVisualFrame
+            visualType={pillar.visualType}
+            label={visualCopy[pillar.visualType].metric}
+          >
             <PillarVisual visualType={pillar.visualType} />
           </SectionVisualFrame>
         </SectionReveal>
@@ -133,13 +190,38 @@ export function PillarExperienceSection({
   );
 }
 
-function MicroCTA({ prompt, label }: { prompt: string; label: string }) {
+function PillarHeading({ pillar }: { pillar: Pillar }) {
+  const accent = visualSkins[pillar.visualType].titleAccent;
+  const [before, after] = pillar.title.split(accent);
+
+  return (
+    <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] text-paper sm:text-6xl">
+      {before}
+      <span
+        className={`bg-gradient-to-r ${visualSkins[pillar.visualType].accent} bg-clip-text text-transparent`}
+      >
+        {accent}
+      </span>
+      {after}
+    </h2>
+  );
+}
+
+function MicroCTA({
+  prompt,
+  label,
+  visualType,
+}: {
+  prompt: string;
+  label: string;
+  visualType: VisualType;
+}) {
   return (
     <div className="mt-9 flex flex-col gap-4 border-t border-gold/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
       <p className="max-w-md text-sm leading-6 text-platinum/68">{prompt}</p>
       <a
         href="#contact"
-        className="inline-flex w-fit items-center gap-3 rounded-full border border-gold/45 bg-gold/10 px-6 py-3 text-sm font-semibold text-paper shadow-[0_0_2.5rem_rgba(212,175,55,0.12)] transition hover:bg-gold hover:text-ink"
+        className={`inline-flex w-fit items-center gap-3 rounded-full border border-gold/45 bg-gradient-to-r ${visualSkins[visualType].accent} px-6 py-3 text-sm font-semibold text-ink shadow-[0_0_2.5rem_rgba(212,175,55,0.18)] transition hover:scale-[1.02]`}
       >
         {label}
         <span aria-hidden="true" className="h-px w-7 bg-current" />
@@ -187,15 +269,20 @@ function ServiceNarrativeItem({
 function SectionVisualFrame({
   children,
   visualType,
+  label,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   visualType: VisualType;
+  label: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-gold/18 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025))] p-3 shadow-2xl shadow-black/35">
+    <div className={`relative overflow-hidden border bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025))] p-3 shadow-2xl shadow-black/35 ${visualSkins[visualType].frame}`}>
       <div className={`absolute inset-0 bg-gradient-to-br ${visualTone[visualType]}`} />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(232,217,183,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(232,217,183,0.026)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40" />
       <div className="relative min-h-[26rem] overflow-hidden rounded-[1.65rem] border border-white/10 bg-ink/68">
+        <div className="absolute left-5 top-5 z-10 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs uppercase tracking-[0.22em] text-champagne/70 backdrop-blur">
+          {label}
+        </div>
         {children}
       </div>
     </div>
