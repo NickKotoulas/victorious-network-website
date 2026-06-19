@@ -51,9 +51,6 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
       <div className="absolute inset-0 z-0">
         <HeroCinematicVisual />
       </div>
-      <div className="pointer-events-none absolute -right-14 bottom-24 z-[3] h-56 w-56 opacity-30 sm:-right-8 sm:h-80 sm:w-80 lg:pointer-events-auto lg:bottom-20 lg:right-[1%] lg:h-[min(34vw,30rem)] lg:w-[min(34vw,30rem)] lg:opacity-70">
-        <HeroSignature3D />
-      </div>
       <div className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(5,5,7,0.98)_0%,rgba(5,5,7,0.88)_38%,rgba(5,5,7,0.18)_72%,rgba(5,5,7,0.42)_100%)]" />
       <div className="absolute inset-y-0 left-0 z-[1] w-[62%] bg-[radial-gradient(ellipse_at_18%_50%,rgba(212,175,55,0.09),transparent_62%)]" />
 
@@ -91,7 +88,10 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
 function AboutSection({ content }: { content: typeof about | typeof aboutEl }) {
   return (
     <SectionShell id="about">
-      <div className="grid gap-12 lg:grid-cols-[0.92fr_0.78fr] lg:items-center lg:justify-between">
+      <div className="pointer-events-none absolute -right-20 top-20 z-0 h-72 w-72 opacity-28 sm:right-[6%] sm:h-96 sm:w-96 lg:left-[51%] lg:right-auto lg:top-[18%] lg:h-[30rem] lg:w-[30rem] lg:-translate-x-1/2 lg:opacity-60">
+        <HeroSignature3D />
+      </div>
+      <div className="relative z-10 grid gap-12 lg:grid-cols-[0.92fr_0.78fr] lg:items-center lg:justify-between">
         <SectionReveal>
           <SectionKicker>{content.kicker}</SectionKicker>
           <h2 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-paper sm:text-6xl">
@@ -167,7 +167,7 @@ function SectionShell({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
+    <section id={id} className="relative mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
       {children}
     </section>
   );
