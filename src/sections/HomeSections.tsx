@@ -10,6 +10,12 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SafeAssetImage } from "@/components/ui/SafeAssetImage";
 import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
+
+const HeroSignature3D = dynamic(
+  () => import("@/components/visuals/HeroSignature3D").then((module) => module.HeroSignature3D),
+  { ssr: false },
+);
 
 export function HomeSections() {
   const { language } = useLanguage();
@@ -45,6 +51,9 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
       <div className="absolute inset-0 z-0">
         <HeroCinematicVisual />
       </div>
+      <div className="pointer-events-none absolute -right-14 bottom-24 z-[3] h-56 w-56 opacity-30 sm:-right-8 sm:h-80 sm:w-80 lg:pointer-events-auto lg:bottom-20 lg:right-[1%] lg:h-[min(34vw,30rem)] lg:w-[min(34vw,30rem)] lg:opacity-70">
+        <HeroSignature3D />
+      </div>
       <div className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(5,5,7,0.98)_0%,rgba(5,5,7,0.88)_38%,rgba(5,5,7,0.18)_72%,rgba(5,5,7,0.42)_100%)]" />
       <div className="absolute inset-y-0 left-0 z-[1] w-[62%] bg-[radial-gradient(ellipse_at_18%_50%,rgba(212,175,55,0.09),transparent_62%)]" />
 
@@ -61,11 +70,11 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
             {content.subline}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href={content.primaryCta.href} className="group inline-flex items-center justify-center gap-3 bg-gold px-7 py-4 text-sm font-semibold text-ink shadow-[0_0_2.5rem_rgba(212,175,55,0.24)] transition hover:bg-champagne">
+            <a href={content.primaryCta.href} data-cursor="Connect" data-magnetic className="group inline-flex items-center justify-center gap-3 bg-gold px-7 py-4 text-sm font-semibold text-ink shadow-[0_0_2.5rem_rgba(212,175,55,0.24)] transition hover:bg-champagne">
               {content.primaryCta.label}
               <span className="h-px w-7 bg-ink transition group-hover:w-10" />
             </a>
-            <a href={content.secondaryCta.href} className="inline-flex items-center justify-center border border-gold/30 bg-ink/35 px-7 py-4 text-sm font-semibold text-paper backdrop-blur transition hover:border-gold hover:bg-gold/10">
+            <a href={content.secondaryCta.href} data-cursor="Explore" data-magnetic className="inline-flex items-center justify-center border border-gold/30 bg-ink/35 px-7 py-4 text-sm font-semibold text-paper backdrop-blur transition hover:border-gold hover:bg-gold/10">
               {content.secondaryCta.label}
             </a>
           </div>
@@ -139,6 +148,8 @@ function ClosingSection({ content }: { content: typeof closing | typeof closingE
         </p>
         <a
           href={content.cta.href}
+          data-cursor="Connect"
+          data-magnetic
           className="mt-9 inline-flex rounded-full bg-gold px-8 py-4 text-sm font-semibold text-ink transition hover:bg-champagne"
         >
           {content.cta.label}
