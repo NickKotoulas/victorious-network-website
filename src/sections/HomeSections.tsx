@@ -40,19 +40,16 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden border-b border-gold/15 pb-20 pt-32 sm:pt-36"
+      className="relative min-h-[100svh] overflow-hidden border-b border-gold/15 pb-20 pt-24"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,7,0.98)_0%,rgba(5,5,7,0.9)_42%,rgba(5,5,7,0.2)_72%,rgba(5,5,7,0.75)_100%)]" />
-      <div className="absolute left-[7%] top-[18%] h-64 w-64 rounded-full bg-gold/10 blur-[110px]" />
+      <div className="absolute inset-0 z-0">
+        <HeroCinematicVisual />
+      </div>
+      <div className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(5,5,7,0.98)_0%,rgba(5,5,7,0.88)_38%,rgba(5,5,7,0.18)_72%,rgba(5,5,7,0.42)_100%)]" />
+      <div className="absolute inset-y-0 left-0 z-[1] w-[62%] bg-[radial-gradient(ellipse_at_18%_50%,rgba(212,175,55,0.09),transparent_62%)]" />
 
-      <div className="relative mx-auto grid min-h-[calc(100svh-13rem)] max-w-7xl items-center gap-4 px-5 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <SectionReveal className="relative z-20 py-8 lg:py-14">
-          <div className="mb-7 flex items-center gap-4">
-            <span className="h-px w-14 bg-gold" />
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-champagne/80 sm:text-xs">
-              {content.motto}
-            </p>
-          </div>
+      <div className="relative z-20 mx-auto flex min-h-[calc(100svh-9rem)] max-w-7xl items-center px-5 sm:px-6 lg:px-8">
+        <SectionReveal className="w-full py-12 lg:py-16">
           <h1 className="max-w-[54rem] font-serif text-5xl font-medium leading-[0.9] text-paper sm:text-7xl lg:text-[5.4rem] xl:text-[6.4rem]">
             {beforeAi}
             <span className="bg-gradient-to-r from-champagne via-gold to-[#8d6c22] bg-clip-text italic text-transparent">
@@ -72,10 +69,6 @@ function HeroSection({ content }: { content: typeof hero | typeof heroEl }) {
               {content.secondaryCta.label}
             </a>
           </div>
-        </SectionReveal>
-
-        <SectionReveal delay={0.12} className="relative z-10 -mt-8 min-h-[30rem] lg:-ml-24 lg:mt-0 lg:min-h-0">
-          <HeroCinematicVisual />
         </SectionReveal>
       </div>
 
