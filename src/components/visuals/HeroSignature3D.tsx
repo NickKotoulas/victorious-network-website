@@ -11,6 +11,7 @@ function stageOpacity(progress: number, center: number, width: number) {
 
 function SignatureObject() {
   const group = useRef<THREE.Group>(null);
+  const pointer = useRef({ x: 0, y: 0 });
   const sphereMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
   const cylinderMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
   const ribbonMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
@@ -29,16 +30,27 @@ function SignatureObject() {
     return positions;
   }, []);
 
+  useEffect(() => {
+    const updatePointer = (event: PointerEvent) => {
+      pointer.current.x = (event.clientX / Math.max(window.innerWidth, 1)) * 2 - 1;
+      pointer.current.y = -(event.clientY / Math.max(window.innerHeight, 1)) * 2 + 1;
+    };
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+    return () => window.removeEventListener("pointermove", updatePointer);
+  }, []);
+
   useFrame((state, delta) => {
     if (!group.current) return;
 
+    const canvasBounds = state.gl.domElement.getBoundingClientRect();
     const progress = THREE.MathUtils.clamp(
-      window.scrollY / Math.max(window.innerHeight * 0.92, 1),
+      (window.innerHeight - canvasBounds.top) /
+        Math.max(window.innerHeight + canvasBounds.height, 1),
       0,
       1,
     );
-    const pointerX = state.pointer.x;
-    const pointerY = state.pointer.y;
+    const pointerX = pointer.current.x;
+    const pointerY = pointer.current.y;
 
     group.current.rotation.y = THREE.MathUtils.lerp(
       group.current.rotation.y,
