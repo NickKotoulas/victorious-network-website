@@ -30,7 +30,7 @@ export function SiteFooter() {
               </span>
             </h2>
           </div>
-          <a href="#contact" className="group inline-flex w-fit items-center gap-5 border border-gold/45 px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-champagne transition hover:bg-gold hover:text-ink">
+          <a href="#contact" data-cursor="Connect" data-magnetic className="group inline-flex w-fit items-center gap-5 border border-gold/45 px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-champagne transition hover:bg-gold hover:text-ink">
             {greek ? "Ας μιλήσουμε" : "Start a conversation"}
             <span className="h-px w-10 bg-current transition group-hover:w-14" />
           </a>
@@ -66,7 +66,7 @@ export function SiteFooter() {
 
           <div>
             <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-gold">{greek ? "Επικοινωνία" : "Contact"}</p>
-            <a href="mailto:info@victoriousnetwork.com" className="mt-6 block font-serif text-xl text-paper transition hover:text-gold">info@victoriousnetwork.com</a>
+            <a href="mailto:info@victoriousnetwork.com" data-cursor="Email" className="mt-6 block font-serif text-xl text-paper transition hover:text-gold">info@victoriousnetwork.com</a>
             <p className="mt-4 max-w-xs text-sm leading-6 text-platinum/48">
               {greek ? "AI επικοινωνία, ρομποτική και στρατηγική ορατότητα για technology brands." : "AI communications, robotics and strategic visibility for technology brands."}
             </p>
