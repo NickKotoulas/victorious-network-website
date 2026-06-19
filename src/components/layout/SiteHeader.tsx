@@ -15,8 +15,8 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/15 bg-[linear-gradient(180deg,rgba(5,5,7,0.88),rgba(5,5,7,0.58))] backdrop-blur-2xl">
       <div className="mx-auto max-w-7xl">
         <nav className="flex items-center justify-between px-5 py-3 sm:px-6 lg:px-8">
-          <a href="#home" className="group flex min-w-0 items-center gap-3">
-            <span className="relative grid h-12 w-20 shrink-0 place-items-center overflow-hidden border-r border-gold/25 pr-3 sm:h-14 sm:w-24">
+          <a href="#home" aria-label="Victorious Network" className="group flex min-w-0 items-center">
+            <span className="relative grid h-12 w-20 shrink-0 place-items-center overflow-hidden sm:h-14 sm:w-24">
               <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(212,175,55,0.18),transparent_70%)] opacity-0 transition group-hover:opacity-100" />
               <img
                 src="/assets/vn-emblem-gold.png"
@@ -25,14 +25,6 @@ export function SiteHeader() {
                 width={360}
                 height={140}
               />
-            </span>
-            <span className="min-w-0">
-              <span className="block font-serif text-base text-paper sm:text-lg">
-                Victorious Network
-              </span>
-              <span className="hidden text-[0.62rem] uppercase tracking-[0.28em] text-gold/75 sm:block">
-                AI Communications Network
-              </span>
             </span>
         </a>
 
