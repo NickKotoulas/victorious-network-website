@@ -46,6 +46,8 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
+                data-cursor="Explore"
+                data-magnetic
                 className="group relative px-3 py-2 text-[0.66rem] font-medium uppercase tracking-[0.18em] text-paper/62 transition hover:text-champagne xl:px-4"
               >
                 <span className="relative z-10">{item.label}</span>
@@ -69,6 +71,8 @@ export function SiteHeader() {
             </div>
             <a
               href="#contact"
+              data-cursor="Connect"
+              data-magnetic
               className="border border-gold/60 bg-gold px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-ink shadow-[0_0_2rem_rgba(212,175,55,0.2)] transition hover:bg-champagne"
             >
               {contactLabel}
