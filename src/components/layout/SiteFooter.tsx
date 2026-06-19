@@ -1,4 +1,8 @@
+"use client";
+
 import { navItems } from "@/content/home";
+import { navItemsEl } from "@/content/home-el";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const footerSignals = [
   "AI storytelling",
@@ -8,6 +12,13 @@ const footerSignals = [
 ] as const;
 
 export function SiteFooter() {
+  const { language } = useLanguage();
+  const greek = language === "el";
+  const currentNav = greek ? navItemsEl : navItems;
+  const signals = greek
+    ? ["AI storytelling", "Ορατότητα στη ρομποτική", "Κύρος στην αγορά", "Δίκτυα καινοτομίας"]
+    : footerSignals;
+
   return (
     <footer className="relative overflow-hidden border-t border-gold/15 bg-ink px-5 py-16 text-paper sm:px-6 lg:px-8">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(212,175,55,0.14),transparent_24rem),radial-gradient(circle_at_86%_12%,rgba(232,217,183,0.08),transparent_22rem)]" />
@@ -30,20 +41,20 @@ export function SiteFooter() {
                 Victorious Network
               </span>
               <span className="mt-1 block text-xs uppercase tracking-[0.28em] text-gold/80">
-                Premium AI innovation agency
+                {greek ? "Premium AI agency καινοτομίας" : "Premium AI innovation agency"}
               </span>
             </span>
           </a>
 
           <p className="mt-8 max-w-xl text-3xl font-semibold leading-tight text-paper sm:text-5xl">
-            Technology deserves a{" "}
+            {greek ? "Η τεχνολογία αξίζει μία " : "Technology deserves a "}
             <span className="bg-gradient-to-r from-gold via-champagne to-paper bg-clip-text text-transparent">
-              visible story.
+              {greek ? "ιστορία που φαίνεται." : "visible story."}
             </span>
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            {footerSignals.map((signal) => (
+            {signals.map((signal) => (
               <span
                 key={signal}
                 className="rounded-full border border-gold/20 bg-white/[0.035] px-4 py-2 text-sm text-platinum/72"
@@ -57,10 +68,10 @@ export function SiteFooter() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">
-              Navigate
+              {greek ? "Πλοήγηση" : "Navigate"}
             </p>
             <div className="mt-5 grid gap-3">
-              {navItems.map((item) => (
+              {currentNav.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -74,37 +85,38 @@ export function SiteFooter() {
 
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">
-              Pillars
+              {greek ? "Πυλώνες" : "Pillars"}
             </p>
             <div className="mt-5 grid gap-3 text-sm text-platinum/68">
-              <span>AI Experiences</span>
+              <span>{greek ? "AI Εμπειρίες" : "AI Experiences"}</span>
               <span>AI Media</span>
-              <span>Innovation & Robotics</span>
-              <span>Commercial Services</span>
+              <span>{greek ? "Καινοτομία & Ρομποτική" : "Innovation & Robotics"}</span>
+              <span>{greek ? "Εμπορικές Υπηρεσίες" : "Commercial Services"}</span>
             </div>
           </div>
 
           <div className="col-span-2 sm:col-span-1">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">
-              Contact
+              {greek ? "Επικοινωνία" : "Contact"}
             </p>
             <p className="mt-5 text-sm leading-7 text-platinum/68">
-              Build visibility, authority and market presence for your
-              technology brand.
+              {greek
+                ? "Χτίστε ορατότητα, κύρος και ισχυρή παρουσία στην αγορά για το technology brand σας."
+                : "Build visibility, authority and market presence for your technology brand."}
             </p>
             <a
               href="#contact"
               className="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition hover:bg-champagne"
             >
-              Start a conversation
+              {greek ? "Ας μιλήσουμε" : "Start a conversation"}
             </a>
           </div>
         </div>
       </div>
 
       <div className="relative mx-auto mt-14 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-xs text-platinum/45 sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Victorious Network. All rights reserved.</p>
-        <p>AI · Communications · Robotics · Market presence</p>
+        <p>© 2026 Victorious Network. {greek ? "Με την επιφύλαξη παντός δικαιώματος." : "All rights reserved."}</p>
+        <p>{greek ? "AI · Επικοινωνία · Ρομποτική · Παρουσία στην αγορά" : "AI · Communications · Robotics · Market presence"}</p>
       </div>
     </footer>
   );
