@@ -39,12 +39,6 @@ a {
   will-change: transform;
 }
 
-html.vn-cursor-enabled a,
-html.vn-cursor-enabled button,
-html.vn-cursor-enabled [data-cursor] {
-  cursor: none;
-}
-
 ::selection {
   background: rgba(212, 175, 55, 0.34);
   color: #ffffff;
