@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
-import type { pillars } from "@/content/home";
+import type { PillarContent } from "@/content/home";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { ReactNode } from "react";
 
-type Pillar = (typeof pillars)[number];
+type Pillar = PillarContent;
 type VisualType = Pillar["visualType"];
 
 const visualCopy: Record<
@@ -36,6 +37,13 @@ const visualCopy: Record<
     metric: "Growth layers",
     emphasis: "Proposal engine",
   },
+};
+
+const visualCopyEl: typeof visualCopy = {
+  experiences: { signal: "Σήμα ζωντανού κοινού", metric: "Hologram σκηνή", emphasis: "Ενέργεια event" },
+  media: { signal: "Ροή studio παραγωγής", metric: "Media timeline", emphasis: "Πολυγλωσσική απήχηση" },
+  innovation: { signal: "Ερευνητικό δίκτυο", metric: "Διαδρομή ρομποτικής", emphasis: "Γέφυρα προς την αγορά" },
+  commercial: { signal: "Χάρτης επέκτασης αγοράς", metric: "Επίπεδα ανάπτυξης", emphasis: "Proposal engine" },
 };
 
 const visualTone: Record<VisualType, string> = {
@@ -104,6 +112,8 @@ export function PillarExperienceSection({
   pillar: Pillar;
   index: number;
 }) {
+  const { language } = useLanguage();
+  const copy = language === "el" ? visualCopyEl : visualCopy;
   const reversed = index % 2 === 1;
   const sectionNumber = String(index + 1).padStart(2, "0");
 
@@ -150,7 +160,7 @@ export function PillarExperienceSection({
         >
           <SectionVisualFrame
             visualType={pillar.visualType}
-            label={visualCopy[pillar.visualType].metric}
+            label={copy[pillar.visualType].metric}
           >
             <PillarVisual visualType={pillar.visualType} />
           </SectionVisualFrame>
@@ -162,13 +172,13 @@ export function PillarExperienceSection({
           <SectionReveal>
             <div className="sticky top-28 hidden rounded-[1.5rem] border border-gold/15 bg-ink/35 p-5 backdrop-blur lg:block">
               <p className="text-xs uppercase tracking-[0.24em] text-platinum/45">
-                {visualCopy[pillar.visualType].signal}
+                {copy[pillar.visualType].signal}
               </p>
               <p className="mt-5 text-3xl font-semibold text-paper">
-                {visualCopy[pillar.visualType].metric}
+                {copy[pillar.visualType].metric}
               </p>
               <p className="mt-4 text-sm leading-6 text-platinum/62">
-                {visualCopy[pillar.visualType].emphasis}
+                {copy[pillar.visualType].emphasis}
               </p>
             </div>
           </SectionReveal>
@@ -191,8 +201,9 @@ export function PillarExperienceSection({
 }
 
 function PillarHeading({ pillar }: { pillar: Pillar }) {
-  const accent = visualSkins[pillar.visualType].titleAccent;
-  const [before, after] = pillar.title.split(accent);
+  const splitAt = pillar.title.indexOf(" ");
+  const before = splitAt > -1 ? `${pillar.title.slice(0, splitAt)} ` : "";
+  const accent = splitAt > -1 ? pillar.title.slice(splitAt + 1) : pillar.title;
 
   return (
     <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] text-paper sm:text-6xl">
@@ -202,7 +213,6 @@ function PillarHeading({ pillar }: { pillar: Pillar }) {
       >
         {accent}
       </span>
-      {after}
     </h2>
   );
 }
