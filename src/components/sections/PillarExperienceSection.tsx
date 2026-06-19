@@ -203,6 +203,8 @@ function MicroCTA({
       <p className="max-w-md text-sm leading-6 text-platinum/68">{prompt}</p>
       <a
         href="#contact"
+        data-cursor="Connect"
+        data-magnetic
         className={`inline-flex w-fit items-center gap-3 rounded-full border border-gold/45 bg-gradient-to-r ${visualSkins[visualType].accent} px-6 py-3 text-sm font-semibold text-ink shadow-[0_0_2.5rem_rgba(212,175,55,0.18)] transition hover:scale-[1.02]`}
       >
         {label}
