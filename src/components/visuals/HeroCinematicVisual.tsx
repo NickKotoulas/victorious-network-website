@@ -33,7 +33,7 @@ export function HeroCinematicVisual() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="relative mx-auto aspect-[4/5] w-full max-w-[45rem] overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_16%,black_100%)] lg:aspect-[5/6]"
+      className="relative h-full w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_14%,black_100%)]"
       onPointerMove={(event) => {
         const bounds = event.currentTarget.getBoundingClientRect();
         pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
@@ -45,7 +45,7 @@ export function HeroCinematicVisual() {
       }}
     >
       <motion.div
-        className="absolute -inset-[7%] bg-[url('/assets/hero_section_image.jpg')] bg-cover bg-[position:53%_center] will-change-transform"
+        className="absolute -inset-[5%] bg-[url('/assets/hero_section_image.jpg')] bg-cover bg-[position:58%_center] will-change-transform"
         style={reducedMotion ? undefined : { x: imageX, y: scrollY, scale: imageScale }}
       />
 
