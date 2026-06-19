@@ -1,4 +1,14 @@
 // Navigation — single landing page, anchor links
+export type PillarContent = {
+  readonly id: string;
+  readonly visualType: "experiences" | "media" | "innovation" | "commercial";
+  readonly kicker: string;
+  readonly title: string;
+  readonly intro: string;
+  readonly items: readonly { readonly title: string; readonly description: string }[];
+  readonly cta: { readonly prompt: string; readonly label: string; readonly href: string };
+};
+
 export const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
