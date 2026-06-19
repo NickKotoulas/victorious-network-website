@@ -1,35 +1,33 @@
 "use client";
 
 import {
-  AnimatePresence,
   motion,
   useMotionValue,
   useReducedMotion,
   useScroll,
   useSpring,
+  useTransform,
+  useVelocity,
 } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function MotionFoundation() {
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28 });
+  const scrollVelocity = useVelocity(scrollY);
+  const lensScale = useTransform(scrollVelocity, [-1800, 0, 1800], [1.22, 1, 1.22]);
   const pointerX = useMotionValue(-100);
   const pointerY = useMotionValue(-100);
   const cursorX = useSpring(pointerX, { stiffness: 650, damping: 42, mass: 0.2 });
   const cursorY = useSpring(pointerY, { stiffness: 650, damping: 42, mass: 0.2 });
-  const [cursorLabel, setCursorLabel] = useState("");
-  const [cursorVisible, setCursorVisible] = useState(false);
+  const [lensVisible, setLensVisible] = useState(false);
   const [finePointer, setFinePointer] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia("(pointer: fine)");
     const updateCapability = () => {
       setFinePointer(media.matches);
-      document.documentElement.classList.toggle(
-        "vn-cursor-enabled",
-        media.matches && !reducedMotion,
-      );
     };
     updateCapability();
     media.addEventListener("change", updateCapability);
@@ -45,12 +43,9 @@ export function MotionFoundation() {
     const handlePointerMove = (event: PointerEvent) => {
       pointerX.set(event.clientX);
       pointerY.set(event.clientY);
-      setCursorVisible(true);
+      setLensVisible(true);
 
       const target = event.target instanceof Element ? event.target : null;
-      const cursorTarget = target?.closest<HTMLElement>("[data-cursor]");
-      setCursorLabel(cursorTarget?.dataset.cursor ?? "");
-
       const nextMagnetic = target?.closest<HTMLElement>("[data-magnetic]") ?? null;
       if (nextMagnetic !== magneticTarget) resetMagneticTarget();
       magneticTarget = nextMagnetic;
@@ -64,7 +59,7 @@ export function MotionFoundation() {
     };
 
     const handlePointerLeave = () => {
-      setCursorVisible(false);
+      setLensVisible(false);
       resetMagneticTarget();
     };
 
@@ -73,7 +68,6 @@ export function MotionFoundation() {
 
     return () => {
       media.removeEventListener("change", updateCapability);
-      document.documentElement.classList.remove("vn-cursor-enabled");
       window.removeEventListener("pointermove", handlePointerMove);
       document.documentElement.removeEventListener("mouseleave", handlePointerLeave);
       resetMagneticTarget();
@@ -91,26 +85,11 @@ export function MotionFoundation() {
       {finePointer && !reducedMotion ? (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none fixed left-0 top-0 z-[90] grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-gold/45 bg-ink/10 mix-blend-difference backdrop-blur-[2px]"
-          style={{ x: cursorX, y: cursorY, opacity: cursorVisible ? 1 : 0 }}
-          animate={{ scale: cursorLabel ? 1.42 : 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <span className="h-1 w-1 rounded-full bg-champagne" />
-          <AnimatePresence>
-            {cursorLabel ? (
-              <motion.span
-                key={cursorLabel}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                className="absolute text-[0.42rem] font-semibold uppercase tracking-[0.14em] text-paper"
-              >
-                {cursorLabel}
-              </motion.span>
-            ) : null}
-          </AnimatePresence>
-        </motion.div>
+          className="pointer-events-none fixed left-0 top-0 z-40 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,217,183,0.13)_0%,rgba(212,175,55,0.07)_28%,rgba(9,20,38,0.025)_52%,transparent_72%)] mix-blend-screen"
+          style={{ x: cursorX, y: cursorY, scale: lensScale }}
+          animate={{ opacity: lensVisible ? 0.72 : 0 }}
+          transition={{ opacity: { duration: 0.28 } }}
+        />
       ) : null}
     </>
   );
