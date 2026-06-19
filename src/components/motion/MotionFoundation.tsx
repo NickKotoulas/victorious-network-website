@@ -85,11 +85,16 @@ export function MotionFoundation() {
       {finePointer && !reducedMotion ? (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none fixed left-0 top-0 z-40 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,217,183,0.13)_0%,rgba(212,175,55,0.07)_28%,rgba(9,20,38,0.025)_52%,transparent_72%)] mix-blend-screen"
-          style={{ x: cursorX, y: cursorY, scale: lensScale }}
-          animate={{ opacity: lensVisible ? 0.72 : 0 }}
-          transition={{ opacity: { duration: 0.28 } }}
-        />
+          className="pointer-events-none fixed left-0 top-0 z-40 h-0 w-0"
+          style={{ x: cursorX, y: cursorY }}
+        >
+          <motion.div
+            className="absolute left-0 top-0 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,217,183,0.13)_0%,rgba(212,175,55,0.07)_28%,rgba(9,20,38,0.025)_52%,transparent_72%)] mix-blend-screen"
+            style={{ scale: lensScale }}
+            animate={{ opacity: lensVisible ? 0.72 : 0 }}
+            transition={{ opacity: { duration: 0.28 } }}
+          />
+        </motion.div>
       ) : null}
     </>
   );
