@@ -55,14 +55,6 @@ export function HeroCinematicVisual() {
         style={reducedMotion ? undefined : { x: lightX, y: lightY }}
       />
 
-      <svg viewBox="0 0 600 720" className="absolute inset-0 h-full w-full opacity-45">
-        <path d="M74 184h104l62 74M522 160h-84l-46 64M62 502h128l46-54M526 520h-104l-58-66" fill="none" stroke="#D4AF37" strokeDasharray="2 11" strokeOpacity="0.42" />
-        <circle cx="178" cy="184" r="4" fill="#E8D9B7" />
-        <circle cx="438" cy="160" r="4" fill="#D4AF37" />
-        <circle cx="190" cy="502" r="4" fill="#D4AF37" />
-        <circle cx="422" cy="520" r="4" fill="#E8D9B7" />
-      </svg>
-
     </div>
   );
 }
