@@ -117,7 +117,8 @@ export function PillarExperienceSection({
         <SectionReveal
           className={`relative z-10 ${reversed ? "lg:col-start-2" : ""}`}
         >
-          <p className="max-w-3xl text-xl leading-9 text-platinum/76 sm:text-2xl sm:leading-10">
+          <PillarHeading pillar={pillar} />
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-platinum/72">
             {pillar.intro}
           </p>
           <MicroCTA
@@ -170,6 +171,21 @@ export function PillarExperienceSection({
         </div>
       </div>
     </section>
+  );
+}
+
+function PillarHeading({ pillar }: { pillar: Pillar }) {
+  const splitAt = pillar.title.indexOf(" ");
+  const before = splitAt > -1 ? `${pillar.title.slice(0, splitAt)} ` : "";
+  const accent = splitAt > -1 ? pillar.title.slice(splitAt + 1) : pillar.title;
+
+  return (
+    <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] text-paper sm:text-6xl">
+      {before}
+      <span className={`bg-gradient-to-r ${visualSkins[pillar.visualType].accent} bg-clip-text text-transparent`}>
+        {accent}
+      </span>
+    </h2>
   );
 }
 
