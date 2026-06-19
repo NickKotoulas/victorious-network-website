@@ -62,7 +62,6 @@ const visualSkins: Record<
   {
     ghost: string;
     accent: string;
-    section: string;
     frame: string;
     titleAccent: string;
   }
@@ -70,8 +69,6 @@ const visualSkins: Record<
   experiences: {
     ghost: "STAGE",
     accent: "from-gold via-champagne to-paper",
-    section:
-      "bg-[radial-gradient(circle_at_78%_22%,rgba(212,175,55,0.16),transparent_28rem),linear-gradient(120deg,rgba(5,5,7,0.98),rgba(31,18,8,0.68),rgba(5,5,7,0.94))]",
     frame:
       "rounded-t-[4rem] border-gold/30 bg-[radial-gradient(circle_at_50%_86%,rgba(212,175,55,0.22),transparent_18rem)]",
     titleAccent: "Experiences & Events",
@@ -79,8 +76,6 @@ const visualSkins: Record<
   media: {
     ghost: "MEDIA",
     accent: "from-platinum via-paper to-gold",
-    section:
-      "bg-[radial-gradient(circle_at_20%_18%,rgba(200,205,212,0.12),transparent_24rem),linear-gradient(120deg,rgba(5,5,7,0.96),rgba(20,24,31,0.86),rgba(5,5,7,0.96))]",
     frame:
       "rounded-[1.2rem] border-platinum/20 bg-[linear-gradient(135deg,rgba(200,205,212,0.08),rgba(212,175,55,0.05))]",
     titleAccent: "Media",
@@ -88,8 +83,6 @@ const visualSkins: Record<
   innovation: {
     ghost: "ROBOTICS",
     accent: "from-gold via-paper to-platinum",
-    section:
-      "bg-[radial-gradient(circle_at_70%_20%,rgba(9,20,38,0.9),transparent_28rem),linear-gradient(135deg,rgba(3,7,17,0.98),rgba(9,20,38,0.72),rgba(5,5,7,0.96))]",
     frame:
       "rounded-[2.5rem] border-gold/20 bg-[radial-gradient(circle_at_50%_40%,rgba(9,20,38,0.95),rgba(5,5,7,0.58))]",
     titleAccent: "Robotics",
@@ -97,8 +90,6 @@ const visualSkins: Record<
   commercial: {
     ghost: "MARKET",
     accent: "from-champagne via-gold to-paper",
-    section:
-      "bg-[radial-gradient(circle_at_18%_18%,rgba(232,217,183,0.12),transparent_22rem),linear-gradient(120deg,rgba(5,5,7,0.96),rgba(24,22,18,0.82),rgba(5,5,7,0.96))]",
     frame:
       "rounded-[0.9rem] border-champagne/22 bg-[linear-gradient(135deg,rgba(232,217,183,0.08),rgba(212,175,55,0.06))]",
     titleAccent: "Services",
@@ -120,7 +111,7 @@ export function PillarExperienceSection({
   return (
     <section
       id={pillar.id}
-      className={`relative overflow-hidden border-y border-white/[0.035] px-5 py-24 sm:px-6 lg:px-8 ${visualSkins[pillar.visualType].section}`}
+      className="relative overflow-hidden border-y border-white/[0.035] bg-transparent px-5 py-24 sm:px-6 lg:px-8"
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(212,175,55,0.055),transparent_18%,transparent_82%,rgba(232,217,183,0.04))]" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(72rem,80vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
