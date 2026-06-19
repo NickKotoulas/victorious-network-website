@@ -1,14 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { navItems } from "@/content/home";
-import { navItemsEl } from "@/content/home-el";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+
+const headerNav = {
+  en: [
+    { label: "AI Experiences & Events", href: "#experiences" },
+    { label: "AI Media", href: "#media" },
+    { label: "Innovation & Robotics", href: "#innovation" },
+    { label: "Commercial Services", href: "#services" },
+  ],
+  el: [
+    { label: "AI Εμπειρίες & Εκδηλώσεις", href: "#experiences" },
+    { label: "AI Media", href: "#media" },
+    { label: "Καινοτομία & Ρομποτική", href: "#innovation" },
+    { label: "Εμπορικές Υπηρεσίες", href: "#services" },
+  ],
+} as const;
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const currentNav = language === "el" ? navItemsEl : navItems;
+  const currentNav = headerNav[language];
   const contactLabel = language === "el" ? "Επικοινωνία" : "Contact Us";
 
   return (
@@ -29,7 +42,7 @@ export function SiteHeader() {
         </a>
 
           <div className="hidden items-center gap-2 xl:flex">
-            {currentNav.filter((item) => item.href !== "#home").map((item) => (
+            {currentNav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -87,7 +100,7 @@ export function SiteHeader() {
                 </button>
               ))}
             </div>
-            {currentNav.filter((item) => item.href !== "#home").map((item) => (
+            {currentNav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
