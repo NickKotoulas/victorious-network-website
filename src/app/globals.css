@@ -32,6 +32,19 @@ a {
   text-decoration: none;
 }
 
+[data-magnetic] {
+  transition-property: transform, color, background-color, border-color, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+html.vn-cursor-enabled a,
+html.vn-cursor-enabled button,
+html.vn-cursor-enabled [data-cursor] {
+  cursor: none;
+}
+
 ::selection {
   background: rgba(212, 175, 55, 0.34);
   color: #ffffff;
