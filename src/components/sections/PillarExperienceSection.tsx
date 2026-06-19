@@ -60,35 +60,30 @@ const visualTone: Record<VisualType, string> = {
 const visualSkins: Record<
   VisualType,
   {
-    ghost: string;
     accent: string;
     frame: string;
     titleAccent: string;
   }
 > = {
   experiences: {
-    ghost: "STAGE",
     accent: "from-gold via-champagne to-paper",
     frame:
       "rounded-t-[4rem] border-gold/30 bg-[radial-gradient(circle_at_50%_86%,rgba(212,175,55,0.22),transparent_18rem)]",
     titleAccent: "Experiences & Events",
   },
   media: {
-    ghost: "MEDIA",
     accent: "from-platinum via-paper to-gold",
     frame:
       "rounded-[1.2rem] border-platinum/20 bg-[linear-gradient(135deg,rgba(200,205,212,0.08),rgba(212,175,55,0.05))]",
     titleAccent: "Media",
   },
   innovation: {
-    ghost: "ROBOTICS",
     accent: "from-gold via-paper to-platinum",
     frame:
       "rounded-[2.5rem] border-gold/20 bg-[radial-gradient(circle_at_50%_40%,rgba(9,20,38,0.95),rgba(5,5,7,0.58))]",
     titleAccent: "Robotics",
   },
   commercial: {
-    ghost: "MARKET",
     accent: "from-champagne via-gold to-paper",
     frame:
       "rounded-[0.9rem] border-champagne/22 bg-[linear-gradient(135deg,rgba(232,217,183,0.08),rgba(212,175,55,0.06))]",
@@ -106,7 +101,6 @@ export function PillarExperienceSection({
   const { language } = useLanguage();
   const copy = language === "el" ? visualCopyEl : visualCopy;
   const reversed = index % 2 === 1;
-  const sectionNumber = String(index + 1).padStart(2, "0");
 
   return (
     <section
@@ -115,10 +109,6 @@ export function PillarExperienceSection({
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(212,175,55,0.055),transparent_18%,transparent_82%,rgba(232,217,183,0.04))]" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(72rem,80vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
-      <div className="pointer-events-none absolute right-6 top-12 hidden w-[min(42rem,68vw)] overflow-hidden text-right text-[9rem] font-semibold leading-none text-white/[0.025] lg:block xl:text-[12rem]">
-        {visualSkins[pillar.visualType].ghost}
-      </div>
-
       <div
         className={`relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center ${
           reversed ? "lg:grid-flow-col-dense" : ""
@@ -127,15 +117,7 @@ export function PillarExperienceSection({
         <SectionReveal
           className={`relative z-10 ${reversed ? "lg:col-start-2" : ""}`}
         >
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-px w-12 bg-gold/70" />
-            <p className="text-sm font-semibold uppercase text-gold">
-              {pillar.kicker}
-            </p>
-            <span className="text-xs text-platinum/35">{sectionNumber}</span>
-          </div>
-          <PillarHeading pillar={pillar} />
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-platinum/72">
+          <p className="max-w-3xl text-xl leading-9 text-platinum/76 sm:text-2xl sm:leading-10">
             {pillar.intro}
           </p>
           <MicroCTA
@@ -188,23 +170,6 @@ export function PillarExperienceSection({
         </div>
       </div>
     </section>
-  );
-}
-
-function PillarHeading({ pillar }: { pillar: Pillar }) {
-  const splitAt = pillar.title.indexOf(" ");
-  const before = splitAt > -1 ? `${pillar.title.slice(0, splitAt)} ` : "";
-  const accent = splitAt > -1 ? pillar.title.slice(splitAt + 1) : pillar.title;
-
-  return (
-    <h2 className="max-w-3xl text-4xl font-semibold leading-[0.98] text-paper sm:text-6xl">
-      {before}
-      <span
-        className={`bg-gradient-to-r ${visualSkins[pillar.visualType].accent} bg-clip-text text-transparent`}
-      >
-        {accent}
-      </span>
-    </h2>
   );
 }
 
