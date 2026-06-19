@@ -1,8 +1,6 @@
 import { about, closing, hero, pillars } from "@/content/home";
-import {
-  HeroSignalVisual,
-  UnifiedBackground,
-} from "@/components/visuals/UnifiedBackground";
+import { UnifiedBackground } from "@/components/visuals/UnifiedBackground";
+import { HeroOrbitRibbon } from "@/components/visuals/HeroOrbitRibbon";
 import { PillarExperienceSection } from "@/components/sections/PillarExperienceSection";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SafeAssetImage } from "@/components/ui/SafeAssetImage";
@@ -30,7 +28,7 @@ function HeroSection() {
   return (
     <section
       id="home"
-      className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-5 pb-24 pt-36 sm:px-6 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:pt-32"
+      className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pb-24 pt-36 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pt-32"
     >
       <div className="absolute left-5 top-28 h-px w-28 bg-gradient-to-r from-gold to-transparent sm:left-6 lg:left-8" />
       <SectionReveal className="relative z-10">
@@ -62,8 +60,11 @@ function HeroSection() {
           </a>
         </div>
       </SectionReveal>
-      <SectionReveal delay={0.12} className="relative z-10">
-        <HeroSignalVisual />
+      <SectionReveal
+        delay={0.12}
+        className="relative z-10 mx-auto w-full max-w-[39rem] max-lg:max-w-[32rem]"
+      >
+        <HeroOrbitRibbon />
       </SectionReveal>
     </section>
   );
